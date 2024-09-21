@@ -1,9 +1,10 @@
 import View from './View.js';
-import previewview from './previewView.js';
-import icons from '../../img/icons.svg';
+import previewView from './previewView.js';
+import icons from 'url:../../img/icons.svg'; // Parcel 2
+
 class BookmarksView extends View {
   _parentElement = document.querySelector('.bookmarks__list');
-  _errorMessage = 'No bookmarks yet. Find a nice recipe and bookmark it :)';
+  _errorMessage = 'No bookmarks yet. Find a nice recipe and bookmark it ;)';
   _message = '';
 
   addHandlerRender(handler) {
@@ -12,7 +13,7 @@ class BookmarksView extends View {
 
   _generateMarkup() {
     return this._data
-      .map(bookmarks => previewview.render(bookmarks, false))
+      .map(bookmark => previewView.render(bookmark, false))
       .join('');
   }
 }

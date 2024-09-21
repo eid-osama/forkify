@@ -1,5 +1,5 @@
 import View from './View.js';
-import icons from '../../img/icons.svg';
+import icons from 'url:../../img/icons.svg'; // Parcel 2
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
@@ -13,19 +13,23 @@ class AddRecipeView extends View {
   constructor() {
     super();
     this._addHandlerShowWindow();
-    this._addHandlerhideWindow();
+    this._addHandlerHideWindow();
   }
-  toogleWindow() {
-    this._window.classList.toggle('hidden');
+
+  toggleWindow() {
     this._overlay.classList.toggle('hidden');
+    this._window.classList.toggle('hidden');
   }
 
   _addHandlerShowWindow() {
-    this._btnOpen.addEventListener('click', this.toogleWindow.bind(this));
+    this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
   }
-  _addHandlerhideWindow() {
-    this._btnClose.addEventListener('click', this.toogleWindow.bind(this));
+
+  _addHandlerHideWindow() {
+    this._btnClose.addEventListener('click', this.toggleWindow.bind(this));
+    this._overlay.addEventListener('click', this.toggleWindow.bind(this));
   }
+
   addHandlerUpload(handler) {
     this._parentElement.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -37,4 +41,5 @@ class AddRecipeView extends View {
 
   _generateMarkup() {}
 }
+
 export default new AddRecipeView();
