@@ -19,7 +19,9 @@ function createRecipeObject(data) {
     id: recipe.id,
     title: recipe.title,
     ingredients: recipe.ingredients,
-    image: recipe.image_url,
+    image: recipe.image_url.startsWith('http://')
+      ? recipe.image_url.replace('http://', 'https://')
+      : recipe.image_url,
     publisher: recipe.publisher,
     sourceUrl: recipe.source_url,
     servings: recipe.servings,
